@@ -1,5 +1,8 @@
 from django.db import models
 from django.shortcuts import render , redirect
+from django.contrib.auth.models import User
+from django.dispatch import receiver 
+from django.db.models.signals import post_save
 
 # Create your models here.
 class Image(models.Model):
@@ -24,11 +27,19 @@ class Image(models.Model):
         caption = cls.objects.filter(id = id).update(image_caption = update)
 
 class Profile(models.Model):
+    user = models.OneToOneField(User , on_delete= models.CASCADE , null = True)
     profile_photo = models.CharField(max_length= 30)
     bio = models.CharField(max_length= 30)
 
     #search for profile
-    
+    @receiver(post_save , sender = User)
+    def create_profile(sender , instance , created , **kwargs):
+        if created:
+            Profile.objects.create(user = instance)
+    @receiver(post_save , sender = User)
+    def save_profile(sender , instance  , **kwargs):
+        instance.profile.save()
+
     @classmethod 
     def search_profile(cls , profile ):
         name = cls.objects.filter(profile_image = profile)

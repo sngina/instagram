@@ -5,4 +5,5 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url('^$' , views.get_image, name = 'homepage'),
+    url('^user/' , views.userpage , name= 'username'),
 ]
