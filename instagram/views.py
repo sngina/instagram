@@ -2,8 +2,10 @@ from django.core.checks import messages
 from django.shortcuts import render , redirect
 from django.http import HttpResponse ,Http404 
 from .models import Image, Profile
-
+from django.contrib.auth.decorators import login_required
 # returning images 
+
+@login_required(login_url= '/accounts/login/')
 def get_image(request):
     all_images = Image.objects.all()
     return render(request , 'profile/index.html', {"all_images" : all_images})
