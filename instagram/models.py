@@ -27,5 +27,7 @@ class Profile(models.Model):
     profile_photo = models.CharField(max_length= 30)
     bio = models.CharField(max_length= 30)
 
-    #function of getting all the images 
-        
+    #search for profile
+    @classmethod 
+    def search_profile(cls , profile ):
+        name = cls.objects.filter(profile_image = profile)
