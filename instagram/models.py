@@ -28,6 +28,7 @@ class Profile(models.Model):
     bio = models.CharField(max_length= 30)
 
     #search for profile
+    
     @classmethod 
     def search_profile(cls , profile ):
         name = cls.objects.filter(profile_image = profile)
