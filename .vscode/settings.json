@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "stella/bin/python3"
+    "python.pythonPath": "stella/bin/python3",
+    "git.ignoreLimitWarning": true
 }

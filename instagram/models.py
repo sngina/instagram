@@ -22,3 +22,10 @@ class Image(models.Model):
     @classmethod
     def update(cls , id , update) :
         caption = cls.objects.filter(id = id).update(image_caption = update)
+
+class Profile(models.Model):
+    profile_photo = models.CharField(max_length= 30)
+    bio = models.CharField(max_length= 30)
+
+    #function of getting all the images 
+        

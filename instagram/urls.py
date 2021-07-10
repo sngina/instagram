@@ -4,5 +4,5 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    url('^$' , views.welcome, name = 'welcome'),
+    url('^$' , views.get_image, name = 'homepage'),
 ]
