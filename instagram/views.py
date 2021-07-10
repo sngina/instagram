@@ -6,3 +6,4 @@ from .models import Image
 def get_image(request):
     all_images = Image.objects.all()
     return render(request , {"all_images" : all_images})
+    
