@@ -1,9 +1,9 @@
 from django.core.checks import messages
-from django.shortcuts import render , redirect
+from django.shortcuts import get_object_or_404, render , redirect
 from django.http import HttpResponse ,Http404 
-from .models import Image, Profile
+from .models import Comment, Image, Profile
 from django.contrib.auth.decorators import login_required
-from .forms import UserForm , ProfileForm , ImageForm
+from .forms import CommentForm, UserForm , ProfileForm , ImageForm
 # returning images 
 
 @login_required(login_url= '/accounts/login/')
@@ -12,10 +12,13 @@ def get_image(request):
     if request.method == 'POST':
         form = ImageForm(request.POST)
         if form.is_valid():
-           form = ImageForm()
+            form.save()
+            form = ImageForm()
+    print(all_images)
     form = ImageForm()
     return render(request , 'profile/index.html', {"all_images" : all_images} , {"all_images": all_images ,"imageform":form})
-
+def success(request):
+    return HttpResponse('successfully uploaded')
 def userpage(request):
 	user_form = UserForm(instance=request.user)
 	profile_form = ProfileForm(instance=request.user.profile)
@@ -32,3 +35,10 @@ def search(request):
     else:
         message = "You haven't searched for any profile"
         return render(request , 'profile/search.html')
+
+def p_detail(request) :
+    if request.method == 'POST':
+        comment_form = CommentForm(data= request.Image)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.save()
