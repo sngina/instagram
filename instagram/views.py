@@ -38,7 +38,12 @@ def search(request):
 
 def p_detail(request) :
     if request.method == 'POST':
-        comment_form = CommentForm(data= request.Image)
+        comment_form = CommentForm(data= request.POST)
         if comment_form.is_valid():
             new_comment = comment_form.save(commit=False)
             new_comment.save()
+
+    else:
+        comment_form = CommentForm()
+
+    return render(request , )

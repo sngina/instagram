@@ -3,30 +3,8 @@ body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     box-sizing: content-box;
 }
-.modal {
-    z-index: 1;
-    display: none;
-    padding-top: 10px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.733);
-    
 
-}
 
-.modal-content {
-    margin: auto;
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: aliceblue;
-}
 
 .modal-hover-opacity {
     opacity: 1;
@@ -94,3 +72,6 @@ body{
 
 }
 
+.password :hover{
+    text-align: center;
+}
