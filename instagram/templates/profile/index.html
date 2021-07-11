@@ -2,7 +2,7 @@
 {% load bootstrap3%}
 {% block content%}
 <div class="post">
-    <form action="{% url 'homepage'%}" method="post">
+    <form action="{% url 'homepage'%}" method="post" enctype="multipart/form-data">
         {%csrf_token %}
         {% bootstrap_form imageform %}
         <input type="submit" value="Post">
