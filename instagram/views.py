@@ -3,13 +3,17 @@ from django.shortcuts import render , redirect
 from django.http import HttpResponse ,Http404 
 from .models import Image, Profile
 from django.contrib.auth.decorators import login_required
-from .forms import UserForm , ProfileForm
+from .forms import UserForm , ProfileForm , ImageForm
 # returning images 
 
 @login_required(login_url= '/accounts/login/')
 def get_image(request):
     all_images = Image.objects.all()
-    return render(request , 'profile/index.html', {"all_images" : all_images})
+    if request.method == 'POST':
+        form = ImageForm(request.POST)
+        if form.is_valid():
+           form = ImageForm()
+           return render(request , 'profile/index.html', {"all_images" : all_images})
 
 def userpage(request):
 	user_form = UserForm(instance=request.user)

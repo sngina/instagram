@@ -43,3 +43,11 @@ class Profile(models.Model):
     @classmethod 
     def search_profile(cls , profile ):
         name = cls.objects.filter(profile_image = profile)
+
+class Comment(models.Model):
+    post= models.ForeignKey(Image ,on_delete=models.CASCADE , related_name= 'comments')
+    body = models.TextField()
+    name = models.CharField(max_length=80)
+    
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.body , self.name)
