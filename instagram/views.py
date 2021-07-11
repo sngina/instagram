@@ -13,7 +13,8 @@ def get_image(request):
         form = ImageForm(request.POST)
         if form.is_valid():
            form = ImageForm()
-           return render(request , 'profile/index.html', {"all_images" : all_images})
+    form = ImageForm()
+    return render(request , 'profile/index.html', {"all_images" : all_images} , {"all_images": all_images ,"imageform":form})
 
 def userpage(request):
 	user_form = UserForm(instance=request.user)

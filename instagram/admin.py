@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Image , Comment
+from .models import Image , Comment, Profile
 
 # Register your models here.
 class CommentAdmin(admin.ModelAdmin):
@@ -7,3 +7,10 @@ class CommentAdmin(admin.ModelAdmin):
 
     def allow_comments(self , request , queryset):
         queryset.update(active= True)
+
+class ImageAdmin(admin.ModelAdmin):
+    filter_horizontal = ('image' ,)
+
+admin.site.register(Image)
+admin.site.register(Profile)
+admin.site.register(Comment)
