@@ -16,7 +16,7 @@ def get_image(request):
             form = ImageForm()
     print(all_images)
     form = ImageForm()
-    return render(request , 'profile/index.html', {"all_images" : all_images} , {"all_images": all_images ,"imageform":form})
+    return render(request , 'profile/index.html',  {"all_images": all_images ,"imageform":form})
 def success(request):
     return HttpResponse('successfully uploaded')
 def userpage(request):

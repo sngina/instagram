@@ -2,9 +2,11 @@
 {% load bootstrap3%}
 {% block content%}
 <div class="post">
-    <form action="{% url 'homepage'}" method="post">
+    <form action="{% url 'homepage'%}" method="post">
         {%csrf_token %}
-        {{ ImageForm }}
+        {% bootstrap_form imageform %}
+        <input type="submit" value="Post">
+
     </form>
 
 </div>
@@ -12,7 +14,7 @@
 {% for new in  all_images%}
 
 <div class=" container1 imagepost">
-        <img src="{{new.image_photo.url}}" style="max-width:100%;cursor:pointer" width="500px" onclick="onClick(this)"
+        <img src="{{new.image_photo.url}}" style="max-width:100%;cursor:pointer" width="300px" onclick="onClick(this)"
             class="modal-hover-opacity img-fluid">
 </div>
 <div id="modal01" class="modal" onclick="this.style.display='none'">

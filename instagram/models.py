@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 
 # Create your models here.
 class Image(models.Model):
-    image_photo = models.ImageField(upload_to = 'image /' , null = True)
+    image_photo = models.ImageField(upload_to = 'image/' , null = True)
     image_name = models.CharField(max_length=30)
     image_caption = models.CharField(max_length=30)
 
