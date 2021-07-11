@@ -10,7 +10,7 @@ from .forms import CommentForm, UserForm , ProfileForm , ImageForm
 def get_image(request):
     all_images = Image.objects.all()
     if request.method == 'POST':
-        form = ImageForm(request.POST)
+        form = ImageForm(request.POST , request.FILES)
         if form.is_valid():
             form.save()
             form = ImageForm()
