@@ -1,13 +1,13 @@
 {%extends 'registration/base.html'%}
 {% load bootstrap3%}
 {% block content%}
-<div class="post col-md-6">
+<div class="post col-md-8">
     <p><a class="btn btn-outline-primary" href="/user">{{user.username}}</a></p>
 
     <form action="{% url 'homepage'%}" method="post" enctype="multipart/form-data">
         {%csrf_token %}
         <div class="form">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="text-align:left;">
                 Post a photo
             </button>
         </div>
@@ -26,7 +26,7 @@
 
 {% for new in  all_images%}
 
-<div class=" container1 imagepost col-md-6">
+<div class=" container1 imagepost col-md-4">
     <div class="card">
         <a href="{%url 'image' new.id %}"><img src="{{new.image_photo.url}}" style="max-width:60%;cursor:pointer"
                 width="300px" onclick="onClick(this)" class="modal-hover-opacity img-fluid"></a>

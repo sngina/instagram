@@ -131,3 +131,8 @@ div.container1{
    
     
 }
+.password{
+    text-align:left;
+    padding: 5px;
+    background-size: cover;
+}

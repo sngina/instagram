@@ -1,16 +1,18 @@
-<div class="col-sm-6 col-md-6  password">
+<div class="password">
+<div class=" col-sm-6 col-md-6 ">
   {% if user.is_authenticated %}
 
-  <a href="/accounts/password/change">Change Password</a>
+ <button><a href="/accounts/password/change">Change Password</a></button> 
 
 
-  <p><a href="/logout">Logout</a></p>
+ <button><a href="/logout">Logout</a></button> 
 
 
   {% else %}
 
 
-  <p><a class="btn btn-outline-primary" href="/user">{{user.username}}</a></p>
+  <a class="btn btn-outline-primary" href="/user">{{user.username}}</a>
 
   {% endif %}
+</div>
 </div>
