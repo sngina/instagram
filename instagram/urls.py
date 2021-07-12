@@ -7,7 +7,8 @@ urlpatterns = [
     url('^$' , views.get_image, name ='homepage'),
     url('^user/' , views.userpage , name='username'),
     url('^image/(?P<id>[0-9]+)$' , views.image_details , name ='image'),
-    url('^comment' , views.p_detail , name='comment')
+    url('^comment' , views.p_detail , name='comment'),
+    url('image-like /<int:pk>' , views.imagelike , name= 'imagepost_like')
 ]
 
 if settings.DEBUG:

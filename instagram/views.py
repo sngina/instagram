@@ -1,9 +1,11 @@
 from django.core.checks import messages
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render , redirect
 from django.http import HttpResponse ,Http404 
 from .models import Comment, Image, Profile
 from django.contrib.auth.decorators import login_required
 from .forms import CommentForm, UserForm , ProfileForm , ImageForm
+from django.urls import reverse
 # returning images 
 
 @login_required(login_url= '/accounts/login/')
@@ -52,5 +54,15 @@ def image_details(request , id):
     one_image = Image.objects.get(id = id)
     print(request)
     return render(request , 'profile/image.html' , {"one_image": one_image})
+
+    # function of likes
+def imagelike(request ):
+    photo = get_object_or_404(Image , id=request.POST.get('image_post.id'))
+    if photo.likes.filter(id = request.user.id).exists():
+        photo.likes.remove(request.user)
+    else:
+        photo.likes.add(request.user)
+
+        return HttpResponseRedirect(reverse('image_post'))
 
     

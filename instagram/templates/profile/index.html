@@ -1,15 +1,24 @@
 {%extends 'registration/base.html'%}
 {% load bootstrap3%}
 {% block content%}
-<div class="post">
+<div class="post col-md-6">
     <p><a class="btn btn-outline-primary" href="/user">{{user.username}}</a></p>
 
     <form action="{% url 'homepage'%}" method="post" enctype="multipart/form-data">
         {%csrf_token %}
         <div class="form">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                Post a photo
+            </button>
+        </div>
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
         {% bootstrap_form imageform %}
-    </div>
-        <input type="submit" value="Post" style="text-align: center;">
+
+        </div>
+        </div>
+        </div>
 
     </form>
 
@@ -17,13 +26,16 @@
 
 {% for new in  all_images%}
 
-<div class=" container1 imagepost col-sm-6" >
+<div class=" container1 imagepost col-md-6">
     <div class="card">
-    <a href="{%url 'image' new.id %}"><img src="{{new.image_photo.url}}" style="max-width:60%;cursor:pointer"
-            width="300px" onclick="onClick(this)" class="modal-hover-opacity img-fluid"></a>
-            <p>{{new.image_name}}</p>
-            <p>{{new.image_caption}}</p>
-        </div>
+        <a href="{%url 'image' new.id %}"><img src="{{new.image_photo.url}}" style="max-width:60%;cursor:pointer"
+                width="300px" onclick="onClick(this)" class="modal-hover-opacity img-fluid"></a>
+        <p>{{new.image_name}}</p>
+        <p>{{new.image_caption}}</p>
+        <button type="submit" name="blogpost_id" value="{{object.id}}" class="btn btn-info">Like</button>
+        <button type="submit" name="blogpost_id" value="{{object.id}}" class="btn btn-info">Unlike</button>
+
+    </div>
 </div>
 <div id="modal01" class="modal" onclick="this.style.display='none'">
     <span class="close">&times;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -32,8 +44,8 @@
         <p>{{new.comments}}</p>
 
     </div>
-   
-    
+
+
 </div>
 {%endfor%}
 {%endblock%}
