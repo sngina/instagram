@@ -47,3 +47,4 @@ def p_detail(request) :
         comment_form = CommentForm()
 
     return render(request , "profile/comment.html" , 'comment_form' , comment_form)
+

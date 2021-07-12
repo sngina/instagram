@@ -1,4 +1,6 @@
-function onClick(element){
-    document.getElementById("img01").src = element.src;
-    document.getElementById("modal01").style.display = "block";
-}
+document.querySelectorAll("img").forEach((item) => {
+    item.addEventListener("click", (event) => {
+      const image = event.target.getAttribute("data-src");
+      event.target.setAttribute("src", image);
+    });
+  });
