@@ -6,7 +6,9 @@
 
     <form action="{% url 'homepage'%}" method="post" enctype="multipart/form-data">
         {%csrf_token %}
+        <div class="form">
         {% bootstrap_form imageform %}
+    </div>
         <input type="submit" value="Post" style="text-align: center;">
 
     </form>
@@ -15,45 +17,22 @@
 
 {% for new in  all_images%}
 
-<div class=" container1 imagepost">
+<div class=" container1 imagepost col-sm-6" >
 
-    <a href="{%url 'image' new.id %}"><img src="{{new.image_photo.url}}" style="max-width:100%;cursor:pointer"
+    <a href="{%url 'image' new.id %}"><img src="{{new.image_photo.url}}" style="max-width:60%;cursor:pointer"
             width="300px" onclick="onClick(this)" class="modal-hover-opacity img-fluid"></a>
-
+            <p>{{new.image_name}}</p>
+            <p>{{new.image_caption}}</p>
 </div>
 <div id="modal01" class="modal" onclick="this.style.display='none'">
     <span class="close">&times;&nbsp;&nbsp;&nbsp;&nbsp;</span>
     <div class="modal-content">
         <img id="img01" style="max-width:100%" class="img-fluid" width="500px">
-        <p>{{new.image_photo}}</p>
-        <p>{{new.image_name}}</p>
-        <p>{{new.image_caption}}</p>
-        <p>{{new.comment}}</p>
+        <p>{{new.comments}}</p>
 
     </div>
-    <section id="app">
-        <div class="container stella">
-            <div class="row">
-                <div class="col-6">
-                    <div class="comment">
-                        <p v-for="items in item" v-text="items"></p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <textarea type="text" class="input" placeholder="Write a comment" v-model="newItem"
-                        @keyup.enter="addItem()"></textarea>
-                    <button v-on:click="addItem()" class='primaryContained float-right' type="submit">Add Comment</button>
-                </div>
-            </div>
-        </div>
-    </section>
-    <div>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
-
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-    </div>
+   
+    
 </div>
 {%endfor%}
 {%endblock%}
