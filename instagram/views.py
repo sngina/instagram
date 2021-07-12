@@ -46,4 +46,4 @@ def p_detail(request) :
     else:
         comment_form = CommentForm()
 
-    return render(request , )
+    return render(request , "profile/comment.html" , 'comment_form' , comment_form)
