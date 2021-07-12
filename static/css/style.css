@@ -14,7 +14,7 @@ body{
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.027);
+    /* background-color: rgba(0, 0, 0, 0.027); */
     
 
 }
@@ -45,7 +45,8 @@ body{
 .container1 {
     width: 500px;
     display: inline-block;
-    box-shadow: 0 4px 0 rgba(0,  0,0, 3);
+    box-sizing: border-box;
+    background-color: white;
 
 }
 div.container1{
@@ -83,7 +84,7 @@ div.container1{
     }
 }
 
- .imagepost :hover{
+.imagepost :hover{
     border: 1px solid;
     width: 100%;
     height: auto;
@@ -91,6 +92,8 @@ div.container1{
 .imagepost .desc{
     padding: 10px 20px;
     text-align: center;
+    box-shadow: 0 4px 0 rgba(0,  0,0, 3);
+
 }
 *{
     box-sizing:border-box
@@ -114,12 +117,9 @@ div.container1{
     }
   }
   
-  .clearfix:after {
+.clearfix:after {
     content: "";
     display: table;
     clear: both;
   }
 
-.password :hover{
-    text-align: center;
-}

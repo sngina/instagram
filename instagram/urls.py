@@ -6,7 +6,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     url('^$' , views.get_image, name ='homepage'),
     url('^user/' , views.userpage , name='username'),
-    url('^image/(?P<id>[0-9]+)$' , views.image_details , name ='image')
+    url('^image/(?P<id>[0-9]+)$' , views.image_details , name ='image'),
+    url('^comment' , views.p_detail , name='comment')
 ]
 
 if settings.DEBUG:
