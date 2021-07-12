@@ -17,8 +17,8 @@
 
 <div class=" container1 imagepost">
 
-    <a href="{%url 'image' new.id %}"><img src="{{new.image_photo.url}}" style="max-width:100%;cursor:pointer" width="300px" onclick="onClick(this)"
-            class="modal-hover-opacity img-fluid"></a>
+    <a href="{%url 'image' new.id %}"><img src="{{new.image_photo.url}}" style="max-width:100%;cursor:pointer"
+            width="300px" onclick="onClick(this)" class="modal-hover-opacity img-fluid"></a>
 
 </div>
 <div id="modal01" class="modal" onclick="this.style.display='none'">
@@ -28,9 +28,32 @@
         <p>{{new.image_photo}}</p>
         <p>{{new.image_name}}</p>
         <p>{{new.image_caption}}</p>
+        <p>{{new.comment}}</p>
 
     </div>
-    
+    <section id="app">
+        <div class="container stella">
+            <div class="row">
+                <div class="col-6">
+                    <div class="comment">
+                        <p v-for="items in item" v-text="items"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <textarea type="text" class="input" placeholder="Write a comment" v-model="newItem"
+                        @keyup.enter="addItem()"></textarea>
+                    <button v-on:click="addItem()" class='primaryContained float-right' type="submit">Add Comment</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
+
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    </div>
 </div>
 {%endfor%}
 {%endblock%}
