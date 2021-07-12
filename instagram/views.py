@@ -47,4 +47,10 @@ def p_detail(request) :
         comment_form = CommentForm()
 
     return render(request , "profile/comment.html" , 'comment_form' , comment_form)
+# function  for returning image when clicked
+def image_details(request , id):
+    one_image = Image.objects.get(id = id)
+    print(request)
+    return render(request , 'profile/image.html' , {"one_image": one_image})
 
+    

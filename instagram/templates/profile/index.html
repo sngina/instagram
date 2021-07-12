@@ -17,8 +17,9 @@
 
 <div class=" container1 imagepost">
 
-        <img src="{{new.image_photo.url}}" style="max-width:100%;cursor:pointer" width="300px" onclick="onClick(this)"
-            class="modal-hover-opacity img-fluid">
+    <a href="{%url 'image' new.id %}"><img src="{{new.image_photo.url}}" style="max-width:100%;cursor:pointer" width="300px" onclick="onClick(this)"
+            class="modal-hover-opacity img-fluid"></a>
+
 </div>
 <div id="modal01" class="modal" onclick="this.style.display='none'">
     <span class="close">&times;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -29,7 +30,6 @@
         <p>{{new.image_caption}}</p>
 
     </div>
-    
     
 </div>
 {%endfor%}
