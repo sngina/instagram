@@ -18,11 +18,12 @@
 {% for new in  all_images%}
 
 <div class=" container1 imagepost col-sm-6" >
-
+    <div class="card">
     <a href="{%url 'image' new.id %}"><img src="{{new.image_photo.url}}" style="max-width:60%;cursor:pointer"
             width="300px" onclick="onClick(this)" class="modal-hover-opacity img-fluid"></a>
             <p>{{new.image_name}}</p>
             <p>{{new.image_caption}}</p>
+        </div>
 </div>
 <div id="modal01" class="modal" onclick="this.style.display='none'">
     <span class="close">&times;&nbsp;&nbsp;&nbsp;&nbsp;</span>

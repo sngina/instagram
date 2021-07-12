@@ -9,7 +9,7 @@ class Image(models.Model):
     image_photo = models.ImageField(upload_to = 'image/' , null = True)
     image_name = models.CharField(max_length=30)
     image_caption = models.CharField(max_length=30)
-
+    likes = models.ManyToManyField(User, related_name= 'image_no' )
     # the save function
     def __str__(self):
         return self.image_name
@@ -25,7 +25,9 @@ class Image(models.Model):
     @classmethod
     def update(cls , id , update) :
         caption = cls.objects.filter(id = id).update(image_caption = update)
-
+    #function to find the no of likes
+    def number_of_likes(self):
+        return self.likes.count()
 class Profile(models.Model):
     user = models.OneToOneField(User , on_delete= models.CASCADE , null = True)
     profile_photo = models.CharField(max_length= 30)
