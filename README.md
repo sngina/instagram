@@ -13,14 +13,16 @@ live a comment on the post .
 ## Access the website
 Need the latest browser to be able to View
 
-Follow this link ''
+Follow this link 'https://ig-ngina.herokuapp.com/'
 
 It is hosted by heroku
 
+
+Follow this link '
 ---
 ## Access DashBoard
 
-Follow this link ''
+Follow this link 'https://ig-ngina.herokuapp.com/admin'
 
 
 ## SetUp
