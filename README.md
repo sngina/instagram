@@ -18,7 +18,7 @@ Follow this link 'https://ig-ngina.herokuapp.com/'
 It is hosted by heroku
 
 
-Follow this link '
+Follow this link 'https://ig-ngina.herokuapp.com/'
 ---
 ## Access DashBoard
 
