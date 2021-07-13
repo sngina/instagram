@@ -3,7 +3,6 @@
 {% load bootstrap3%}
 {% block content%}
 <div class="post">
-    <p><a class="btn btn-outline-primary" href="/user">{{user.username}}</a></p>
 
     <form action="{% url 'homepage'%}" method="post" enctype="multipart/form-data">
         {%csrf_token %}
