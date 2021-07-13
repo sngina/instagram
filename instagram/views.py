@@ -61,12 +61,13 @@ def image_details(request , id):
 
     # function of likes
 def imagelike(request ):
-    photo = get_object_or_404(Image , id=request.POST.get('image_post.id'))
+    photo = get_object_or_404(Image , id=request.POST.get('id'))
     if photo.likes.filter(id = request.user.id).exists():
         photo.likes.remove(request.user)
+        is_liked = False
     else:
         photo.likes.add(request.user)
-
+        is_liked = True
         return HttpResponseRedirect(reverse('image_post'))
 
     
