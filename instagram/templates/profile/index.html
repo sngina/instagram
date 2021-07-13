@@ -1,4 +1,5 @@
 {%extends 'registration/base.html'%}
+{%load crispy_forms_tags%}
 {% load bootstrap3%}
 {% block content%}
 <div class="post">
@@ -42,11 +43,18 @@
                     <p>{{new.image_caption}}</p>
                     <div class="text-center">
                         <button type="submit" name="blogpost_id" value="{{object.id}}" class="btn btn-info"
-                            style="width: 20%;">Like</button> <br>
+                            style="width: 20%;">Like</button>
                         <button type="submit" name="blogpost_id" value="{{object.id}}" class="btn btn-info"
                             style="width: 20%;">Unlike</button>
                     </div>
-                   <form action="{%url 'comment'%}" method="post" enctype="multipart/form-data">
+                    <div>
+                        {%for comments in comment%}
+                        {%if new.id == comments.post.id %}
+                        <p>{{comments.body}}</p>
+                        {%endif%}
+                        {%endfor%}
+                    </div>
+                    <form action="{%url 'comment'%}" method="post" enctype="multipart/form-data">
                         {%csrf_token%}
                         <input type="hidden" name="imageid" value='{{new.id}}'>
                         {% bootstrap_form c_form %}

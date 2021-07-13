@@ -11,13 +11,15 @@ from django.urls import reverse
 @login_required(login_url= '/accounts/login/')
 def get_image(request):
     all_images = Image.objects.all()
+    comment = Comment.objects.all()
+    print(comment)
     if request.method == 'POST':
         form = ImageForm(request.POST , request.FILES)
         if form.is_valid():
             form.save()
     c_form = CommentForm()
     form = ImageForm()
-    return render(request , 'profile/index.html',  {"all_images": all_images ,"imageform":form  , "c_form": c_form} )
+    return render(request , 'profile/index.html',  {"all_images": all_images ,"imageform":form  , "c_form": c_form , "comment": comment} )
 def success(request):
     return HttpResponse('successfully uploaded')
 def userpage(request):
@@ -47,6 +49,7 @@ def p_detail(request) :
             new_comment.name = request.user
             new_comment.post = pic
             new_comment.save()
+            
         return redirect('homepage')
 
     
