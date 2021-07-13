@@ -15,10 +15,9 @@ def get_image(request):
         form = ImageForm(request.POST , request.FILES)
         if form.is_valid():
             form.save()
-            form = ImageForm()
-    print(all_images)
+    c_form = CommentForm()
     form = ImageForm()
-    return render(request , 'profile/index.html',  {"all_images": all_images ,"imageform":form})
+    return render(request , 'profile/index.html',  {"all_images": all_images ,"imageform":form  , "c_form": c_form} )
 def success(request):
     return HttpResponse('successfully uploaded')
 def userpage(request):
@@ -42,13 +41,15 @@ def p_detail(request) :
     if request.method == 'POST':
         comment_form = CommentForm(data= request.POST)
         if comment_form.is_valid():
+            pic_id = int(request.POST.get('imageid'))
+            pic = Image.objects.get(id=pic_id)
             new_comment = comment_form.save(commit=False)
+            new_comment.name = request.user
+            new_comment.post = pic
             new_comment.save()
+        return redirect('homepage')
 
-    else:
-        comment_form = CommentForm()
-
-    return render(request , "profile/comment.html" , 'comment_form' , comment_form)
+    
 # function  for returning image when clicked
 def image_details(request , id):
     one_image = Image.objects.get(id = id)

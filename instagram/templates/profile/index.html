@@ -1,51 +1,68 @@
 {%extends 'registration/base.html'%}
 {% load bootstrap3%}
 {% block content%}
-<div class="post col-md-8">
+<div class="post">
     <p><a class="btn btn-outline-primary" href="/user">{{user.username}}</a></p>
 
     <form action="{% url 'homepage'%}" method="post" enctype="multipart/form-data">
         {%csrf_token %}
         <div class="form">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="text-align:left;">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"
+                style="text-align:left;">
                 Post a photo
             </button>
         </div>
         <div class="modal" id="myModal">
             <div class="modal-dialog">
-              <div class="modal-content">
-        {% bootstrap_form imageform %}
+                <div class="modal-content p-2">
+                    {% bootstrap_form imageform %}
+                    <input type="submit" class="btn btn-primary" style="width: 40%;">
 
-        </div>
-        </div>
+                </div>
+            </div>
         </div>
 
     </form>
 
 </div>
+<div class="container">
 
-{% for new in  all_images%}
 
-<div class=" container1 imagepost col-md-4">
-    <div class="card">
-        <a href="{%url 'image' new.id %}"><img src="{{new.image_photo.url}}" style="max-width:60%;cursor:pointer"
-                width="300px" onclick="onClick(this)" class="modal-hover-opacity img-fluid"></a>
-        <p>{{new.image_name}}</p>
-        <p>{{new.image_caption}}</p>
-        <button type="submit" name="blogpost_id" value="{{object.id}}" class="btn btn-info">Like</button>
-        <button type="submit" name="blogpost_id" value="{{object.id}}" class="btn btn-info">Unlike</button>
+    <div class="row ">
+        <div class="col-md-7  text-center">
+
+
+            {% for new in  all_images%}
+
+            <div class=" container1 imagepost mt-3 p-4">
+                <div class="card">
+                    <a href="{%url 'image' new.id %}"><img src="{{new.image_photo.url}}" onclick="onClick(this)"
+                            class="modal-hover-opacity img-fluid"></a>
+                    <p>{{new.image_name}}</p>
+                    <p>{{new.image_caption}}</p>
+                    <div class="text-center">
+                        <button type="submit" name="blogpost_id" value="{{object.id}}" class="btn btn-info"
+                            style="width: 20%;">Like</button> <br>
+                        <button type="submit" name="blogpost_id" value="{{object.id}}" class="btn btn-info"
+                            style="width: 20%;">Unlike</button>
+                    </div>
+                   <form action="{%url 'comment'%}" method="post" enctype="multipart/form-data">
+                        {%csrf_token%}
+                        <input type="hidden" name="imageid" value='{{new.id}}'>
+                        {% bootstrap_form c_form %}
+                        <input type="submit" class="btn btn-success btn-md " value="Add Comment">
+                    </form>
+                </div>
+            </div>
+            
+
+        
+        {%endfor%}
+
+    </div>
+    <div class="col-md-5">
 
     </div>
 </div>
-<div id="modal01" class="modal" onclick="this.style.display='none'">
-    <span class="close">&times;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <div class="modal-content">
-        <img id="img01" style="max-width:100%" class="img-fluid" width="500px">
-        <p>{{new.comments}}</p>
-
-    </div>
-
-
 </div>
-{%endfor%}
 {%endblock%}

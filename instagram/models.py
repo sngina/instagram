@@ -49,7 +49,7 @@ class Profile(models.Model):
 class Comment(models.Model):
     post= models.ForeignKey(Image ,on_delete=models.CASCADE , related_name= 'comments')
     body = models.TextField()
-    name = models.CharField(max_length=80)
+    name = models.ForeignKey(User , on_delete=models.CASCADE ,related_name='userprofile')
     
     def __str__(self):
-        return 'Comment {} by {}'.format(self.body , self.name)
+        return 'Comment {} by {}'.format(self.body , self.name)                       
